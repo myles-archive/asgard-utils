@@ -68,9 +68,7 @@ class MarkupTextField(TextField):
 		value = getattr(model_instance, self.attname)
 		markup = getattr(model_instance, self._markup_choices)
 		if markup == 'markdown':
-			from asgard.utils.markdown_processor import CodeBlockPreprocessor
 			md = Markdown()
-			md.textPreprocessors.insert(0, CodeBlockPreprocessor())
 			html = md.convert(value)
 		elif markup == 'plain':
 			html = linebreaks(amp(value), autoescape=True)
